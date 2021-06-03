@@ -1,13 +1,13 @@
 import numpy as np
 
-def parse_file(file_name: str) -> np.array:
+def parse_file(file_name: str) -> list:
 
     file = open(file_name, "r")
     temp_string = file.read()
 
     return parse_string(temp_string)
 
-def parse_string(string_to_parse: str) -> np.array:
+def parse_string(string_to_parse: str) -> list:
 
     char_counter = 0
     tab_lang = []
@@ -28,4 +28,4 @@ def parse_string(string_to_parse: str) -> np.array:
     for element in tab_lang:
         final_list.append(element/char_counter)
 
-    return np.array(final_list)
+    return final_list

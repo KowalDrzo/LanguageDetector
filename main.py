@@ -3,6 +3,7 @@
 from neural_network import *
 import text_parser as tp
 
+"""
 train_inputs = np.array( [[0, 0, 0, 0], [1, 1, 1, 1]] )
 
 network = NeuralNetwork(4)
@@ -23,15 +24,34 @@ test_data = np.array( [[1, 1, 1, 1], [1, 0, 0, 1], [0, 1, 1, 1], [0, 1, 0, 1]] )
 for data in test_data:
     print(f"Result for {data} is:")
     print(round(network.propagation(data)[-1], 3))
+"""
 
-tp_data = tp.parse_file("TrainingTexts/english.txt")
+eng_data = tp.parse_file("TrainingTexts/english.txt")
+ger_data = tp.parse_file("TrainingTexts/german.txt")
+pol_data = tp.parse_file("TrainingTexts/polish.txt")
 
-print(tp_data)
+train_inputs = np.array([eng_data, ger_data, pol_data])
 
-tp_data = tp.parse_file("TrainingTexts/german.txt")
+network = NeuralNetwork(26)
 
-print(tp_data)
+print(network.weights)
 
-tp_data = tp.parse_file("TrainingTexts/polish.txt")
+train_outputs = np.array([[0, 0, 1]]).T
 
-print(tp_data)
+train_iterations = 50000
+
+network.train(train_inputs, train_outputs, train_iterations)
+
+print(network.weights)
+
+input_text = input("Podaj słowo lub zdanie: ")
+#test_data = tp.parse_string(input_text)
+
+#print(f"Result for {test_data} is:")
+#print(round(network.propagation(np.array(test_data)), 3))
+
+test_data = np.array( [tp.parse_string(input_text)] )
+
+for data in test_data:
+    print(f"Result for {data} is:")
+    print(round(network.propagation(data)[-1], 3))
