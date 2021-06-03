@@ -5,9 +5,9 @@ class NeuralNetwork:
     Simple neural network that checks if a given binary representation of a positive number is even
     """
 
-    def __init__(self):
+    def __init__(self, weights_nb):
         np.random.seed(1)
-        self.weights = 2 * np.random.random((3, 1)) - 1
+        self.weights = 2 * np.random.random((weights_nb, 1)) - 1
 
     def sigmoid(self, x):
         """
@@ -22,7 +22,7 @@ class NeuralNetwork:
         return x * (1 - x)
 
     def train(self, train_input, train_output, train_iters):
-        for _ in range(train_iters):
+        for i in range(train_iters):
             propagation_result = self.propagation(train_input)
             self.backward_propagation(
                 propagation_result, train_input, train_output)
