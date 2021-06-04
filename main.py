@@ -36,9 +36,9 @@ network = NeuralNetwork(676)
 
 #print(network.weights)
 
-train_outputs = np.array([[0, 0, 1]]).T
+train_outputs = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1]]).T
 
-train_iterations = 1000
+train_iterations = 50000
 
 network.train(train_inputs, train_outputs, train_iterations)
 
@@ -61,9 +61,9 @@ train_inputs = np.array([eng_data, ger_data, pol_data])
 
 network = NeuralNetwork(676)
 
-train_outputs = np.array([[1, 0, 0]]).T
+train_outputs = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1]]).T
 
-train_iterations = 1000
+train_iterations = 50000
 
 network.train(train_inputs, train_outputs, train_iterations)
 
@@ -81,7 +81,7 @@ network = NeuralNetwork(676)
 
 train_outputs = np.array([[0, 1, 0]]).T
 
-train_iterations = 1000
+train_iterations = 50000
 
 network.train(train_inputs, train_outputs, train_iterations)
 
