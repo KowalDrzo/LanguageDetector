@@ -38,7 +38,7 @@ network = NeuralNetwork(676)
 
 train_outputs = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1]]).T
 
-train_iterations = 50000
+train_iterations = 80000
 
 network.train(train_inputs, train_outputs, train_iterations)
 
@@ -55,38 +55,3 @@ test_data = np.array( [tp.parse_string(input_text)] )
 for data in test_data:
     #print(f"Result for {data} is:")
     print(network.propagation(data))
-
-
-train_inputs = np.array([eng_data, ger_data, pol_data])
-
-network = NeuralNetwork(676)
-
-train_outputs = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1]]).T
-
-train_iterations = 50000
-
-network.train(train_inputs, train_outputs, train_iterations)
-
-test_data = np.array( [tp.parse_string(input_text)] )
-
-for data in test_data:
-    #print(f"Result for {data} is:")
-    print(round(network.propagation(data)[-1], 3))
-
-
-
-train_inputs = np.array([eng_data, ger_data, pol_data])
-
-network = NeuralNetwork(676)
-
-train_outputs = np.array([[0, 1, 0]]).T
-
-train_iterations = 50000
-
-network.train(train_inputs, train_outputs, train_iterations)
-
-test_data = np.array( [tp.parse_string(input_text)] )
-
-for data in test_data:
-    #print(f"Result for {data} is:")
-    print(round(network.propagation(data)[-1], 3))

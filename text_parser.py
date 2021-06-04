@@ -13,7 +13,7 @@ def parse_string(string_to_parse: str) -> list:
 
     char_counter = 0
     tab_lang = []
-    
+
     for a in range(65, 91):
         print(a)
         for b in range(65, 91):
