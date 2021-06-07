@@ -2,6 +2,9 @@ from neural_network import *
 from text_parser import Parser
 from tkinter import *
 
+"""
+Klasa Menu odpowiedzialna jest za wyświetlanie i obsługę menu - wywoływanie metod sieci neuronowej i parsera.
+"""
 class Menu:
 
     root = Tk()
@@ -9,9 +12,11 @@ class Menu:
     parser = Parser()
 
     text_entry = None
-    out_text = None
+    out_text_var = StringVar()
 
-    lang_tab = ["Angielski:", "Niemiecki:", "Polski:  "]
+    lang_tab = ["Angielski:", "Niemiecki:", "Polski:   "]
+
+    ############################################################################################
 
     def display_menu(self):
 
@@ -30,7 +35,7 @@ class Menu:
 
         self.text_entry = Entry(self.root, width = b_width * 2)
         self.text_entry.insert(0, "Miejsce na tekst w obsługiwanym języku")
-        self.out_text = Label(self.root, text="Wynik detekcji:")
+        out_text = Label(self.root, textvariable = self.out_text_var, justify = LEFT)
 
         option1.pack()
         self.text_entry.pack()
@@ -38,7 +43,7 @@ class Menu:
         option3.pack()
         option_exit.pack()
 
-        self.out_text.pack()
+        out_text.pack()
 
         self.root.mainloop()
 
@@ -85,7 +90,7 @@ class Menu:
         for i in range(len(self.lang_tab)):
             out_str = out_str + str(self.lang_tab[i]) + "\t" + "{0:.2%}".format(result[i]) + "\n"
 
-        self.out_text.setvar(out_str)
+        self.out_text_var.set(out_str)
         print(out_str)
 
     ############################################################################################

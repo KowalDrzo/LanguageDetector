@@ -1,8 +1,21 @@
 import numpy as np
 
+"""
+Klasa Parser odpowiedzialna jest za parsowanie plików, a także zapis i odczyt wag z pliku.
+"""
 class Parser:
 
     show_info = False
+
+    """
+    Metoda parse_file wczytuje plik i wywołuje jego parsowanie.
+
+    Parametry:
+    file_name - nazwa pliku do wczytania.
+
+    Zwraca:
+    Przeparsowana lista wejść sieci.
+    """
 
     def parse_file(self, file_name: str) -> list:
 
@@ -12,6 +25,16 @@ class Parser:
         return self.parse_string(temp_string)
 
     ############################################################################################
+
+    """
+    Metoda parse_string wparsuje litera po literze zawartość stringa i tworzy listę wejść sieci.
+
+    Parametry:
+    string_to_parse - string do parsowania.
+
+    Zwraca:
+    Przeparsowana lista wejść sieci.
+    """
 
     def parse_string(self, string_to_parse: str) -> list:
 
@@ -48,6 +71,13 @@ class Parser:
 
     ############################################################################################
 
+    """
+    Metoda save_weights zapisuje aktualne wagi do pliku.
+
+    Parametry:
+    weights - wagi sieci do zapisania.
+    """
+
     def save_weights(self, weights: np.array):
 
         file = open("SavedWeights.sav", "w")
@@ -61,6 +91,13 @@ class Parser:
         file.close()
 
     ############################################################################################
+
+    """
+    Metoda load_weights wczytuje aktualne wagi z pliku.
+
+    Zwraca:
+    Wczytane wagi sieci.
+    """
 
     def load_weights(self) -> np.array:
 
