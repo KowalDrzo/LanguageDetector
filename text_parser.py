@@ -1,56 +1,52 @@
 import numpy as np
 
-def parse_file(file_name: str) -> list:
+class Parser:
 
-    file = open(file_name, "r")
-    temp_string = file.read()
+    def parse_file(self, file_name: str) -> list:
 
-    return parse_string(temp_string)
+        file = open(file_name, "r")
+        temp_string = file.read()
 
-######################################################################
+        return self.parse_string(temp_string)
 
-def parse_string(string_to_parse: str) -> list:
+    ############################################################################################
 
-    char_counter = 0
-    tab_lang = []
+    def parse_string(self, string_to_parse: str) -> list:
 
-    for a in range(65, 91):
-        print(a)
-        for b in range(65, 91):
-            
-            tri_char_cnt = 0
+        char_counter = 0
+        tab_lang = []
 
-            for i in range(0, len(string_to_parse) - 1):
+        for a in range(65, 91):
+            print(a)
+            for b in range(65, 91):
+                
+                tri_char_cnt = 0
 
-                fir_c = ord(string_to_parse[i])
-                sec_c = ord(string_to_parse[i+1])
+                for i in range(0, len(string_to_parse) - 1):
 
-                if fir_c == a or fir_c == a + 32:
-                    if sec_c == b or sec_c == b + 32:
+                    fir_c = ord(string_to_parse[i])
+                    sec_c = ord(string_to_parse[i+1])
 
-                        tri_char_cnt += 1
-                        char_counter += 1
+                    if fir_c == a or fir_c == a + 32:
+                        if sec_c == b or sec_c == b + 32:
 
-            tab_lang.append(tri_char_cnt)
+                            tri_char_cnt += 1
+                            char_counter += 1
 
-    
-    """
-    for i in range(65, 91):
+                tab_lang.append(tri_char_cnt)
 
-        letter_counter = 0
-        for char in string_to_parse:
+        final_list = []
 
-            if ord(char) == i or ord(char) == i + 32:
-                char_counter += 1
-                letter_counter += 1
-        
-        tab_lang.append(letter_counter)
-    """
+        for element in tab_lang:
+            final_list.append(element/char_counter)
 
-    final_list = []
+        print("Dlugosc: " + str(len(final_list)))
+        return final_list
 
-    for element in tab_lang:
-        final_list.append(element/char_counter)
+    ############################################################################################
 
-    print("Dlugosc: " + str(len(final_list)))
-    return final_list
+    def save_weights(self, weights: np.array):
+
+        file = open("SavedWeights.sav", "w")
+        file.write(str(weights))
+        file.close()
