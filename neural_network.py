@@ -7,7 +7,7 @@ class NeuralNetwork:
 
     def __init__(self, weights_nb):
         np.random.seed(1)
-        self.weights = 2 * np.random.random((weights_nb, 1)) - 1
+        self.weights = 2 * np.random.random((weights_nb, 3)) - 1
 
     def sigmoid(self, x):
         """
