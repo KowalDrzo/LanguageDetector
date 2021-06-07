@@ -3,6 +3,7 @@ import numpy as np
 
 """
 Klasa NeutralNetwork odpowiedzialna jest za obsługę sieci neuronowej.
+Kod tej klasy inspirowany był zajęciami z SNiN oraz przykładem udostępnianym publicznie przez ImpiCode.
 """
 class NeuralNetwork:
 
@@ -93,5 +94,5 @@ class NeuralNetwork:
     def correct_wages(self, propagation_result, train_input, train_output):
 
         error = train_output - propagation_result
-        
+
         self.weights += np.dot(train_input.T, error * self.d_sigmoid(propagation_result))
