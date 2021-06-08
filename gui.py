@@ -1,6 +1,7 @@
 from neural_network import *
 from text_parser import Parser
 from tkinter import *
+import drawer as dr
 
 """
 Klasa Menu odpowiedzialna jest za wyświetlanie i obsługę menu - wywoływanie metod sieci neuronowej i parsera.
@@ -8,18 +9,19 @@ Klasa Menu odpowiedzialna jest za wyświetlanie i obsługę menu - wywoływanie 
 class Menu:
 
     root = Tk()
-    network = NeuralNetwork(676, 3)
+    network = None
     parser = Parser()
 
     text_entry = None
     out_text_var = StringVar()
 
-    lang_tab = ["Angielski:", "Niemiecki:", "Polski:   "]
+    lang_tab = ["Angielski:", "Niemiecki:", "Polski:   ", "Czeski:   ", "Włoski:   ", "Rosyjski (tr.):"]
 
     ############################################################################################
 
     def display_menu(self):
 
+        self.network = NeuralNetwork(676, len(self.lang_tab))
         np.set_printoptions(formatter={"float": lambda x: "{0:0.6f}".format(x)}, threshold=np.inf)
 
         self.root.geometry("640x480")
@@ -62,9 +64,18 @@ class Menu:
         print(self.lang_tab[2])
         pol_data = self.parser.parse_file("TrainingTexts/polish.txt")
 
+        print(self.lang_tab[3])
+        cze_data = self.parser.parse_file("TrainingTexts/czech.txt")
+
+        print(self.lang_tab[4])
+        ita_data = self.parser.parse_file("TrainingTexts/italian.txt")
+
+        print(self.lang_tab[5])
+        rus_data = self.parser.parse_file("TrainingTexts/russian.txt")
+
         self.parser.show_info = False
 
-        train_inputs = np.array([eng_data, ger_data, pol_data])
+        train_inputs = np.array([eng_data, ger_data, pol_data, cze_data, ita_data, rus_data])
         train_outputs = np.identity(len(self.lang_tab))
 
         train_iterations = 80000
@@ -88,6 +99,8 @@ class Menu:
         out_str = "Wynik detekcji:\n"
         for i in range(len(self.lang_tab)):
             out_str = out_str + str(self.lang_tab[i]) + "\t" + "{0:.2%}".format(result[i]) + "\n"
+
+        dr.draw_plot(self.lang_tab, result)
 
         self.out_text_var.set(out_str)
         print(out_str)
