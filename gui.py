@@ -15,7 +15,7 @@ class Menu:
     text_entry = None
     out_text_var = StringVar()
 
-    lang_tab = ["Angielski:", "Niemiecki:", "Polski:   ", "Czeski:   ", "Włoski:   ", "Rosyjski (tr.):"]
+    lang_tab = ["Angielski:", "Niemiecki:", "Polski:", "Czeski:", "Włoski:", "Rosyjski (tr.):"]
 
     ############################################################################################
 
@@ -96,14 +96,14 @@ class Menu:
 
         result = self.network.propagation(test_data[0])
 
-        out_str = "Wynik detekcji:\n"
+        out_str = "\nWynik detekcji:\n\n"
         for i in range(len(self.lang_tab)):
-            out_str = out_str + str(self.lang_tab[i]) + "\t" + "{0:.2%}".format(result[i]) + "\n"
-
-        dr.draw_plot(self.lang_tab, result)
+            out_str = out_str + "{: >15}".format(self.lang_tab[i]) + "\t" + "{0:.2%}".format(result[i]) + "\n"
 
         self.out_text_var.set(out_str)
         print(out_str)
+
+        dr.draw_plot(self.lang_tab, result)
 
     ############################################################################################
 
