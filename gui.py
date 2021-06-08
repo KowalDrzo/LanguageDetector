@@ -65,8 +65,7 @@ class Menu:
         self.parser.show_info = False
 
         train_inputs = np.array([eng_data, ger_data, pol_data])
-
-        train_outputs = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1]]).T
+        train_outputs = np.identity(len(self.lang_tab))
 
         train_iterations = 80000
         print("Iteracje uczenia: " + str(train_iterations))
